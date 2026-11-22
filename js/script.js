@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initBinaryRain();
   checkPopupFlip();
   initParallax();
+  initPblQrModal();
 });
 
 
@@ -590,4 +591,41 @@ function initParallax() {
       ticking = true;
     }
   }, { passive: true });
+}
+
+/* ================================================================
+   11. MODAL QR CODE KEBUTUHAN PBL
+================================================================ */
+function initPblQrModal() {
+  const modal = document.getElementById('pblQrModal');
+  const openBtn = document.getElementById('openPblQr');
+  const closeBtn = document.getElementById('closePblQr');
+
+  if (!modal || !openBtn) return;
+
+  function openModal() {
+    modal.classList.add('open');
+    modal.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+    if (closeBtn) closeBtn.focus();
+  }
+
+  function closeModal() {
+    if (!modal.classList.contains('open')) return;
+    modal.classList.remove('open');
+    modal.setAttribute('aria-hidden', 'true');
+    document.body.style.overflow = '';
+    openBtn.focus();
+  }
+
+  openBtn.addEventListener('click', openModal);
+  if (closeBtn) closeBtn.addEventListener('click', closeModal);
+
+  modal.addEventListener('click', (e) => {
+    if (e.target === modal) closeModal();
+  });
+
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') closeModal();
+  });
 }

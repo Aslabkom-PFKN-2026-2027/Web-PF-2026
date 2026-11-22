@@ -123,6 +123,21 @@
               <i class="fas fa-book"></i> Kebutuhan Praktikum
             </button>
           </a>
+          <div class="hero-pbl-group">
+            <a href="https://bit.ly/Kebutuhan_PBL_Pemfis26" target="_blank" rel="noopener" class="btn btn-gold ripple">
+              <i class="fas fa-rocket"></i> Kebutuhan PBL
+            </a>
+            <button
+              type="button"
+              class="btn btn-gold-outline ripple"
+              id="openPblQr"
+              aria-haspopup="dialog"
+              aria-controls="pblQrModal"
+              title="Tampilkan QR Code Kebutuhan PBL"
+            >
+              <i class="fas fa-qrcode"></i> QR Code
+            </button>
+          </div>
         </div>
 
         <div class="hero-stats">
@@ -771,6 +786,61 @@
       <p>Copyrights &copy; 2026/2027 AsLabKom PF &mdash; All rights reserved</p>
     </div>
   </footer>
+
+
+  <!-- ============================================================
+       MODAL QR CODE KEBUTUHAN PBL
+  ============================================================ -->
+  <div
+    class="qr-modal"
+    id="pblQrModal"
+    role="dialog"
+    aria-modal="true"
+    aria-labelledby="pblQrTitle"
+    aria-hidden="true"
+  >
+    <div class="qr-modal-card glass-card">
+      <button type="button" class="qr-modal-close" id="closePblQr" aria-label="Tutup modal QR Code">
+        <i class="fas fa-xmark"></i>
+      </button>
+
+      <span class="qr-modal-badge">PBL &middot; 2026/2027</span>
+      <h3 class="qr-modal-title" id="pblQrTitle">QR Code Kebutuhan PBL</h3>
+      <p class="qr-modal-desc">
+        Scan QR code ini untuk membuka folder kebutuhan Project Based Learning.
+      </p>
+
+      <div class="qr-image-frame">
+        <img
+          src="assets/images/qr-kebutuhan-pbl.jpg"
+          alt="QR Code Kebutuhan PBL Pemrograman Fisika 2026"
+          class="qr-image"
+          width="240"
+          height="240"
+        />
+      </div>
+
+      <p class="qr-modal-link-text">bit.ly/Kebutuhan_PBL_Pemfis26</p>
+
+      <div class="qr-modal-actions">
+        <a
+          href="https://bit.ly/Kebutuhan_PBL_Pemfis26"
+          target="_blank"
+          rel="noopener"
+          class="btn btn-gold ripple"
+        >
+          <i class="fas fa-up-right-from-square"></i> Buka Link
+        </a>
+        <a
+          href="assets/images/qr-kebutuhan-pbl.jpg"
+          download="QR-Kebutuhan-PBL-PF26.jpg"
+          class="btn btn-gold-outline ripple"
+        >
+          <i class="fas fa-download"></i> Unduh QR
+        </a>
+      </div>
+    </div>
+  </div>
 
 
   <!-- Script -->
