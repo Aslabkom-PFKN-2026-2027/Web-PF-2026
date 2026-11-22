@@ -28,6 +28,7 @@ document.addEventListener('DOMContentLoaded', () => {
   checkPopupFlip();
   initParallax();
   initPblQrModal();
+  initPblTop3();
 });
 
 
@@ -627,5 +628,56 @@ function initPblQrModal() {
 
   document.addEventListener('keydown', (e) => {
     if (e.key === 'Escape') closeModal();
+  });
+}
+
+/* ================================================================
+   12. TOP 3 PBL SHOWCASE (SILHOUETTE -> WINNER REVEAL)
+================================================================ */
+function initPblTop3() {
+  const cfg = window.PBL_TOP3_CONFIG;
+  if (!cfg) return;
+
+  const statusPill = document.getElementById('pblStatusPill');
+  const statusText = document.getElementById('pblStatusText');
+
+  if (statusText) {
+    statusText.textContent = cfg.revealed
+      ? (cfg.revealedStatusText || 'Pemenang Top 3 PBL Resmi Diumumkan')
+      : (cfg.statusText || 'Menunggu Pengumuman Pemenang');
+  }
+  if (statusPill && cfg.revealed) {
+    statusPill.classList.add('is-revealed');
+  }
+
+  if (!cfg.revealed || !cfg.winners) return;
+
+  document.querySelectorAll('.pbl-card[data-pbl-rank]').forEach((card) => {
+    const rank = card.dataset.pblRank;
+    const winner = cfg.winners[rank];
+    if (!winner) return;
+
+    const img = card.querySelector('.pbl-winner-photo');
+    const teamEl = card.querySelector('.pbl-team-name');
+    const projectEl = card.querySelector('.pbl-project-title');
+    const membersEl = card.querySelector('.pbl-members');
+
+    if (winner.team && teamEl) teamEl.textContent = winner.team;
+    if (winner.project && projectEl) projectEl.textContent = winner.project;
+    if (winner.members && membersEl) {
+      membersEl.textContent = winner.members;
+      membersEl.hidden = false;
+    }
+
+    if (winner.photo && img) {
+      img.src = winner.photo;
+      img.alt = `Foto Juara ${rank} PBL — ${winner.team || 'Pemrograman Fisika 2026'}`;
+      img.hidden = false;
+      img.addEventListener('error', () => {
+        img.hidden = true;
+        card.classList.remove('is-revealed');
+      }, { once: true });
+      card.classList.add('is-revealed');
+    }
   });
 }
